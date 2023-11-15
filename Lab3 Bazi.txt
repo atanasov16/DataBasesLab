@@ -1,6 +1,6 @@
 1.   σGenres.Name='Sci-Fi'(Genres⨝Movies)
 2.   πFirstname,Lastname(Persons⨝(PersonsMovies⨝(σRuntime>150 ∧ Budget>200000000(Movies))))
 3.   πMovies.Title(σMovies.Runtime<120 or Movies.Runtime>180(Movies⨝(PersonsMovies⨝(σFirstname='James'∧Lastname='Cameron'(Persons)))))
-4.   πHaveSequels.Title(ρ Sequels (Movies) ⨝ Sequels.SequelOf=HaveSequels.Movie_ID ρ HaveSequels(Movies))∪ πallMovies.Title(σallGenres.Name='Action'(ρ allMovies(Movies)⨝allMovies.Genre_ID = allGenres.Genre_ID ρ allGenres (Genres)))
-5.   πHaveSequels.Title(ρ Sequels (Movies) ⨝ Sequels.SequelOf=HaveSequels.Movie_ID ρ HaveSequels(Movies))∩ πallMovies.Title(σallGenres.Name='Action'(ρ allMovies(Movies)⨝allMovies.Genre_ID = allGenres.Genre_ID ρ allGenres (Genres)))
+4.   πHaveSequels.Title(ρ Sequels (Movies) ⨝ Sequels.SequelOf=HaveSequels.Movie_ID ρ HaveSequels(Movies))∪ πMovies.Title(σGenres.Name='Action'(Movies ⨝ Genres))
+5.   πHaveSequels.Title(ρ Sequels (Movies) ⨝ Sequels.SequelOf=HaveSequels.Movie_ID ρ HaveSequels(Movies))∩ πMovies.Title(σGenres.Name='Action'(Movies ⨝ Genres))
 6.   πMovies.Movie_ID, Movies.Title (Movies) - (πHaveSequels.Movie_ID, HaveSequels.Title(ρ Sequels (Movies) ⨝ Sequels.SequelOf=HaveSequels.Movie_ID ρ HaveSequels(Movies)))
